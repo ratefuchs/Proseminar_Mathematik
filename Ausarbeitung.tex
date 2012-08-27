@@ -1,0 +1,194 @@
+\documentclass[a4paper,11pt]{report}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{bibgerm}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{color}
+\usepackage{enumerate}
+\usepackage{tabularx}
+\usepackage{subfig}
+\usepackage{fancyhdr}
+\usepackage{upgreek}
+\usepackage{graphicx}
+\usepackage{framed}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{a4paper,left=20mm,right=30mm, top=3cm, bottom=2cm} 
+\usepackage{marginnote}
+\usepackage[pdftex,pdfpagelabels,colorlinks,backref,pagebackref,plainpages=false]{hyperref}
+\setlength{\headwidth}{15cm}
+\setlength{\textwidth}{15cm}
+
+\usepackage{shadethm}
+% == Set the heading style ===================================================
+\setlength{\headheight}{14pt}
+%\pagestyle{fancyplain}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\lhead[\fancyplain{}{\thepage}]{\fancyplain{}{\rightmark}}
+\rhead[\fancyplain{}{\leftmark}]{\fancyplain{}{\thepage}}
+\cfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+% ============================================================================
+
+% == Set correct values for fitting floats ===================================
+\tolerance=2000
+\emergencystretch=10pt
+
+\setcounter{topnumber}{3}
+\setcounter{totalnumber}{5}
+\setcounter{bottomnumber}{2}
+
+% To make those darn floats fit where they should
+\setcounter{totalnumber}{9}
+\setcounter{topnumber}{9}
+\setcounter{bottomnumber}{9}
+\renewcommand{\textfraction}{0.00}
+\renewcommand{\topfraction}{1.0}
+\renewcommand{\bottomfraction}{1.0}
+% ============================================================================
+
+% == German definitions for theorems etc. ==================================== 
+%\newtheorem{theorem}{Satz}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+%\newtheorem{corollary}{Korollar}[chapter]
+\newtheorem{observation}{Beobachtung}[chapter]
+\newtheorem{fact}{Fakt}[chapter]
+%\theoremstyle{remark} 
+\theoremstyle{definition} 
+\newtheorem{remark}{Bemerkung}[chapter]
+\newtheorem{example}{Beispiel}[chapter]
+% ============================================================================
+
+% == Abkürzungen für die reellen, natürlichen, ganzen,... Zahlen =============
+\newcommand{\R}{{\ensuremath{\mathbb{R}}}}
+\newcommand{\N}{{\ensuremath{\mathbb{N}}}}
+\newcommand{\Z}{{\ensuremath{\mathbb{Z}}}}
+\newcommand{\C}{{\ensuremath{\mathbb{C}}}}
+\newcommand{\Q}{{\ensuremath{\mathbb{Q}}}}
+\newcommand{\F}{{\ensuremath{\mathbb{F}}}}
+\newcommand{\Prim}{{\ensuremath{\mathbb{P}}}}
+% ============================================================================
+
+\newcommand{\RM}[1]{\MakeUppercase{\romannumeral #1{}}} 
+
+% == Makros für Autorenname und -adresse =====================================
+\newcommand{\myaddress}[6]{%
+  \parbox{\textwidth}{\textbf{\large #1}\\
+    #2\\ #3\\ #4\\ 
+    \ifthenelse{\equal{#5}{}}{}{Email: \href{mailto:#5}{\texttt{#5}}\\}
+    \ifthenelse{\equal{#6}{}}{}{WWW: \href{#6}{\path|#6|}\\}
+  } 
+}
+
+\newcommand{\myauthor}[1]{%
+  \addtocontents{toc}{\protect\hspace{3.35ex}%
+  \textsl{#1}\par}\vspace{-4ex}\quad\hfill\textsl{\Large #1}\vspace{8ex}}
+
+\newcommand{\myname}[1]{\Large #1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Tragen Sie in der folg. Zeile Ihren Namen ein: %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\OO}{{\ensuremath{\mathcal{O}}}}
+\newcommand{\const}{\ensuremath{\equiv}}
+
+%\renewcommand{\thechapter}{\Roman{chapter}}
+\renewcommand{\thesection}{\arabic{section}}
+
+
+\newenvironment{Kasten}[1]
+{
+\hspace{0.05\linewidth}
+\begin{center}
+\begin{minipage}{0.95\linewidth}
+\setlength{\fboxsep}{10pt}
+%\setlength{\fboxsep}{18pt}
+%\definecolor{shadecolor}{gray}{0.9}
+\definecolor{shadecolor}{rgb}{0.9,1,1}
+\definecolor{framecolor}{gray}{0}
+%\def\FrameCommand{\fcolorbox{framecolor}{shadecolor}}
+%\MakeFramed {\FrameRestore}
+\subsection*{#1}
+%\begin{itshape}
+}
+{
+%\end{itshape}
+%\endMakeFramed
+\end{minipage}
+\end{center}
+%\vspace{1em}
+}
+
+
+\newenvironment{bsp}[1]
+{
+\setlength{\fboxsep}{10pt}
+\subsection*{Beispiel: #1}
+\begin{upshape}
+}
+{
+\end{upshape}
+}
+
+\newshadetheorem{theorem}{Satz}[chapter]
+\newshadetheorem{corollary}{Korollar}[chapter]
+\newshadetheorem{definitions}{Definition}[chapter]
+
+\newenvironment{definition}[1]{
+	\begin{definitions}
+	\marginnote{\emph{#1}}
+}{\end{definitions}}
+
+
+\begin{document}
+\pagenumbering{alph}
+\begin{titlepage}
+	\begin{center}	
+		\LARGE \textbf{$n$-dimensionale Polarkoordinaten \\[5ex]
+			{\Large Proseminar Mathematik - Themen zur Analysis \\[5ex] 
+    		Wintersemester 2012/2013}\\[5ex]}
+	\end{center}
+	\begin{center}
+		Simon Bischof; 29.11.2012 %TODO: exaktes Datum
+	\end{center}
+\end{titlepage}
+%\maketitle
+\clearpage\pagenumbering{Roman}
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+\shorthandoff{"}
+\clearpage\pagenumbering{arabic}
+\chapter{Motivation}
+Wenn mehrdimensionale Integrale in der Vorlesung eingeführt werden, d.h.
+$$\int\limits_M f(x)dx \qquad (x\in\R^n,M\subseteq \R^n, f:\R^n\to\R),$$ %TODO:globale Nummer
+ist eine der ersten Funktionen, die integriert wird, $f\const 1$. Damit wird der Inhalt (je nach Dimension Fläche, Volumen,$\cdots$) berechnet.\\
+Für einfache Flächen wie den $n$-dimensionalen Würfel %TODO:Bilder Würfel & Kugel für n=1..3
+ist mithilfe des Satzes von Fubini noch leicht machbar (man bekommt den Inhalt $1$). Für eine weitere regelmäßige Fläche, die $n$-dimensionale Kugel $D^n:=\{(x_1,\cdots,x_n)\in\R^n|x_1^2+\cdots+x\_n^2\leq 1\}$, ist das ganze ungleich komplizierter. Fubini liefert
+$$.$$%TODO:Formel
+Nach Einführung der Polarkoordinaten lässt sich das Integral mithilfe der Substitutionsregel
+$$$$%TODO:Formel+glob. Nr.
+viel einfacher berechnen.
+\chapter{Vorgehensweise}
+Die Polarkoordinaten werden als Funktion $P_n$ vom \glqq Polarkoordinatenraum\grqq{} in den kartesischen Raum induktiv definiert. Dabei dienen die bekannten Polarkoordinaten im Fall $n=2$ als Induktionsanfang. Außerdem werde ich immer noch den Fall $n=3$ explizit angeben, bei dem sich die bekannten Kugelkoordinaten ergeben.\\
+%TODO: Anschauung mit Drehung, Bilder,...???
+Darauf werden einige Eigenschaften der Funktion $P_n$ bewiesen, insbesondere wird auch die Funktionaldeterminante berechnet, die für die Substitutionsregel %TODO:Referenz
+wichtig ist.
+%TODO: Anmerkung bzgl Q_n mit r\in\R, phi_1..n-1\in[-pi/2,pi/2]
+\chapter{$P_n$: Definition und Eigenschaften}
+\section{Definition}
+\section{$||P_n(r,\phi_1,\cdots,\phi_{n-1})||$}
+\section{Funktionalmatrix und -determinante}
+\chapter{Integralberechnungen}
+\section{Inhalt der $n$-dimensionalen Kugel}
+\section{Sonstiges}%TODO:evtl. auch rausnehmen
+\chapter{Verallgemeinerungen}
+%TODO:andeuten, dass nur kurz
+\section{\glqq Ellipsoidkoordinaten\grqq}%Kommentar: waren bei einer Aufgabe auf einem HM2-Übungsblatt tatsächlich hilfreich...
+\section{verallgemeinerte Zylinderkoordinaten}
+\end{document}
