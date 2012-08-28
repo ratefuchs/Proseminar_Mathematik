@@ -174,21 +174,48 @@ $$.$$%TODO:Formel
 Nach Einführung der Polarkoordinaten lässt sich das Integral mithilfe der Substitutionsregel
 $$$$%TODO:Formel+glob. Nr.
 viel einfacher berechnen.
-\chapter{Vorgehensweise}
+\chapter{Grundlegendes}
+\section{Vorgehensweise}
 Die Polarkoordinaten werden als Funktion $P_n$ vom \glqq Polarkoordinatenraum\grqq{} in den kartesischen Raum induktiv definiert. Dabei dienen die bekannten Polarkoordinaten im Fall $n=2$ als Induktionsanfang. Außerdem werde ich immer noch den Fall $n=3$ explizit angeben, bei dem sich die bekannten Kugelkoordinaten ergeben.\\
 %TODO: Anschauung mit Drehung, Bilder,...???
-Darauf werden einige Eigenschaften der Funktion $P_n$ bewiesen, insbesondere wird auch die Funktionaldeterminante berechnet, die für die Substitutionsregel %TODO:Referenz
+Darauf werden einige Eigenschaften der Funktion $P_n$ bewiesen, insbesondere wird auch die Funktionaldeterminante berechnet, die für die Substitutionsregel %TODO:Referenz auf Formel
 wichtig ist.
 %TODO: Anmerkung bzgl Q_n mit r\in\R, phi_1..n-1\in[-pi/2,pi/2]
+\section{einige Definitionen}
+\begin{itemize}
+\item Es sei im Folgenden stets $n\in\N\setminus\{1\}$.
+\item $e_n$ bezeichne den $n$-ten kanonischen Einheitsvektor. Soweit nichts anderes gesagt ist, sei $e_n\in\R^n$, also $e_n=(0,\ldots,0,1)^T$.
+\item Mit $||\bullet||$ werde im Folgenden die euklidische Norm bezeichnet.
+\end{itemize}
 \chapter{$P_n$: Definition und Eigenschaften}
 \section{Definition}
-\section{$||P_n(r,\phi_1,\cdots,\phi_{n-1})||$}
+\section{$||P_n(r,\varphi_1,\cdots,\varphi_{n-1})||$}
+Im Falle $n=2$ ergibt sich durch direktes Ausrechnen:\\
+$||P_2(r,\varphi_1)||^2=||\begin{pmatrix}r\cos\varphi_1\\ r\sin\varphi_1\end{pmatrix}||^2=
+r^2\cos^2\varphi_1+r^2\sin^2\varphi_1=r^2\cdot(\cos^2\varphi_1+\sin^2\varphi_1)=r^2$.\\
+Wegen $r\geq 0$ gilt also $||P_2(r,\varphi_1)||=r$.\\
+Ebenso ist ($n=3$): $||P_3(r,\varphi_1,\varphi_2)||^2=
+||\begin{pmatrix}r\cos\varphi_1\cos\varphi_2\\ r\sin\varphi_1\cos\varphi_2\\ r\sin\varphi_2\end{pmatrix}||^2=
+r^2\cos^2\varphi_1\cos^2\varphi_2+r^2\sin^2\varphi_1\cos^2\varphi_2+r^2\sin^2\varphi_2
+=r^2\cos^2\varphi_2+r^2\sin^2\varphi_2=r^2$, also wieder $||P_3(r,\varphi_1,\varphi_2)||=r$.\\ \\
+Der Beweis, dass tatsächlich $||P_n(r,\varphi_1,\ldots,\varphi_{n-1})||=r$ für alle $n$ gilt, erfolgt mit vollständiger Induktion:\\
+\textbf{Induktionsanfang:} Für $n=2$ wurde dies oben schon gezeigt. \checkmark\\
+\textbf{Induktionsvoraussetzung:} Es sei $||P_n(r,\varphi_1,\ldots,\varphi_{n-1})||=r$.\\
+\textbf{Induktionsschritt:} Es ist %Orthogonal!
+Also gilt mit dem Satz des Pythagoras:\\
+$||P_{n+1}(r,\varphi_1,\ldots,\varphi_n)||^2=\cos^2\varphi_n\cdot||P_n(r,\varphi_1,\ldots,\varphi_{n-1})||^2 +\sin^2\varphi_n\cdot||r\cdot e_n||^2=r^2\cos^2\varphi_n+r^2\sin^2\varphi_n=r^2$ \checkmark
 \section{Funktionalmatrix und -determinante}
+Es gilt $|\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))|=r^{n-1}\prod\limits_{i=2}^{n-1}\cos^{n-1}\varphi_i$.
 \chapter{Integralberechnungen}
 \section{Inhalt der $n$-dimensionalen Kugel}
 \section{Sonstiges}%TODO:evtl. auch rausnehmen
 \chapter{Verallgemeinerungen}
 %TODO:andeuten, dass nur kurz
 \section{\glqq Ellipsoidkoordinaten\grqq}%Kommentar: waren bei einer Aufgabe auf einem HM2-Übungsblatt tatsächlich hilfreich...
+Seien $a_1,\ldots,a_n>0$ fest. Die Menge $M^n:=\{x\in\R^n|\frac{x_1^2}{a_1^2}+\ldots\frac{x_n^2}{a_n^2}=1\}$ ist ein $n$-dimensionales Ellipsoid mit den Halbachsen $a_1,\ldots,a_n$. Im Spezialfall $a_1=\ldots=a_n:=r$ wird $M^n$ zu einer $n$-dimensionalen Kugel mit Radius $r$.\\
+Mithilfe einer modifizierten Form von $P_n$, nämlich $Q_n(r,\varphi_1,\ldots,\varphi_{n-1})=$, %TODO: Formel einfügen!
+lässt sich der Inhalt von $M^n$ leicht berechnen. Mit der Multilinearität der Determinante ergibt sich:\\
+$|\det(J_{Q_n}(r,\varphi_1,\ldots,\varphi_{n-1}))|=
+a_1\cdot a_2\cdot\ldots\cdot a_n\cdot|\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))|$.
 \section{verallgemeinerte Zylinderkoordinaten}
 \end{document}
