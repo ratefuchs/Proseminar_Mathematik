@@ -154,22 +154,21 @@
     		Wintersemester 2012/2013}\\[5ex]}
 	\end{center}
 	\begin{center}
-		Simon Bischof; 29.11.2012 %TODO: exaktes Datum
+		Simon Bischof; 06.12.2012 %TODO: exaktes Datum
 	\end{center}
 \end{titlepage}
 %\maketitle
 \clearpage\pagenumbering{Roman}
 \setcounter{tocdepth}{1}
-\tableofcontents
 
 \shorthandoff{"}
 \clearpage\pagenumbering{arabic}
 \chapter{Motivation}
 Wenn mehrdimensionale Integrale in der Vorlesung eingeführt werden, d.h.
 $$\int\limits_M f(x)dx \qquad (x\in\R^n,M\subseteq \R^n, f:\R^n\to\R),$$ %TODO:globale Nummer
-ist eine der ersten Funktionen, die integriert wird, $f\const 1$. Damit wird der Inhalt (je nach Dimension Fläche, Volumen,$\cdots$) berechnet.\\
-Für einfache Flächen wie den $n$-dimensionalen Würfel %TODO:Bilder Würfel & Kugel für n=1..3
-ist mithilfe des Satzes von Fubini noch leicht machbar (man bekommt den Inhalt $1$). Für eine weitere regelmäßige Fläche, die $n$-dimensionale Kugel $D^n:=\{(x_1,\cdots,x_n)\in\R^n|x_1^2+\cdots+x\_n^2\leq 1\}$, ist das ganze ungleich komplizierter. Fubini liefert
+ist eine der ersten Funktionen, die integriert wird, $f\const 1$. Damit wird der Inhalt (je nach Dimension Fläche, Volumen,$\ldots$) berechnet.\\
+Für einfache Mengen wie den $n$-dimensionalen Würfel %TODO:Bilder Würfel & Kugel für n=1..3
+ist das mithilfe des Satzes von Fubini noch leicht machbar (man bekommt den Inhalt $1$). Für eine weitere regelmäßige Menge, die $n$-dimensionale Kugel $D^n:=\{(x_1,\cdots,x_n)\in\R^n|x_1^2+\cdots+x\_n^2\leq 1\}$, ist das ganze ungleich komplizierter. Fubini liefert
 $$.$$%TODO:Formel
 Nach Einführung der Polarkoordinaten lässt sich das Integral mithilfe der Substitutionsregel
 $$$$%TODO:Formel+glob. Nr.
@@ -183,12 +182,33 @@ wichtig ist.
 %TODO: Anmerkung bzgl Q_n mit r\in\R, phi_1..n-1\in[-pi/2,pi/2]
 \section{einige Definitionen}
 \begin{itemize}
-\item Es sei im Folgenden stets $n\in\N\setminus\{1\}$.
+\item Es sei im Folgenden stets $n\in\N\setminus\{1\}$, denn für $n=1$ sind die Polarkoordinaten nicht definiert.
 \item $e_n$ bezeichne den $n$-ten kanonischen Einheitsvektor. Soweit nichts anderes gesagt ist, sei $e_n\in\R^n$, also $e_n=(0,\ldots,0,1)^T$.
-\item Mit $||\bullet||$ werde im Folgenden die euklidische Norm bezeichnet.
+\item Als Skalarprodukt werde immer das Standardskalarprodukt im $\R^n$ verwendet, $||\bullet||$ sei im Folgenden die euklidische Norm.
 \end{itemize}
 \chapter{$P_n$: Definition und Eigenschaften}
 \section{Definition}
+$P_2:[0, \infty)\times [0, 2\pi]$ wird direkt definiert durch $P_2(r,\varphi_1)=\begin{pmatrix}
+r\cos\varphi_1\\ r\sin\varphi_1\end{pmatrix}$.\\
+Veranschaulichung: \\%TODO
+Nun wird für $n>2$ die Funktion $P_n:[0,\infty)\times[0, 2\pi]\times[-\frac{\pi}{2},+\frac{\pi}{2}]^{n-2}$ induktiv definiert:\\[0.5em]
+$P_n(r,\varphi_1, \varphi_2, \ldots, \varphi_{n-1})=\begin{pmatrix}
+P_{n-1}(r,\varphi_1,\cdots,\varphi_{n-2})\cdot\cos\varphi_{n-1} \\ r\cdot\sin \varphi_{n-1}\end{pmatrix}
+$ \\ $= \cos\varphi_{n-1}\begin{pmatrix}P_{n-1}(r,\varphi_1,\cdots,\varphi_{n-2}) \\ 0 \end{pmatrix}+r\sin\varphi_{n-1}e_n$\\
+Ausgeschrieben ergibt sich:\\
+$P_n(r,\varphi_1, \varphi_2, \ldots, \varphi_{n-1})= \begin{pmatrix}r\cos\varphi_1\cos\varphi_2\cdot\ldots\cdot\cos\varphi_{n-1} \\ r\sin\varphi_1\cos\varphi_2\cdot\ldots\cdot\cos\varphi_{n-1} \\
+r\sin\varphi_2\cdot\ldots\cdot\cos\varphi_{n-1} \\
+r\sin\varphi_3\cdot\ldots\cdot\cos\varphi_{n-1} \\
+\vdots \\
+r\sin\varphi_{n-2}\cos\varphi_{n-1} \\
+r \sin\varphi_{n-1}
+\end{pmatrix}$\\
+Im Falle $n=3$ ergeben sich daher die bekannten Kugelkoordinaten
+$$P_3(r,\varphi_1, \varphi_2)=
+\begin{pmatrix}r\cos\varphi_1\cos\varphi_2 \\
+r\sin\varphi_1\cos\varphi_2\\
+r\sin\varphi_2\\ \end{pmatrix}$$
+
 \section{$||P_n(r,\varphi_1,\cdots,\varphi_{n-1})||$}
 Im Falle $n=2$ ergibt sich durch direktes Ausrechnen:\\
 $||P_2(r,\varphi_1)||^2=||\begin{pmatrix}r\cos\varphi_1\\ r\sin\varphi_1\end{pmatrix}||^2=
@@ -201,21 +221,33 @@ r^2\cos^2\varphi_1\cos^2\varphi_2+r^2\sin^2\varphi_1\cos^2\varphi_2+r^2\sin^2\va
 Der Beweis, dass tatsächlich $||P_n(r,\varphi_1,\ldots,\varphi_{n-1})||=r$ für alle $n$ gilt, erfolgt mit vollständiger Induktion:\\
 \textbf{Induktionsanfang:} Für $n=2$ wurde dies oben schon gezeigt. \checkmark\\
 \textbf{Induktionsvoraussetzung:} Es sei $||P_n(r,\varphi_1,\ldots,\varphi_{n-1})||=r$.\\
-\textbf{Induktionsschritt:} Es ist %Orthogonal!
+\textbf{Induktionsschritt:} Es ist leicht einzusehen, dass $(P_n(r,\varphi_1, \varphi_2, \ldots, \varphi_{n-1}), 0)\cdot (r\sin\varphi_{n-1}e_n) = 0$. 
 Also gilt mit dem Satz des Pythagoras:\\
 $||P_{n+1}(r,\varphi_1,\ldots,\varphi_n)||^2=\cos^2\varphi_n\cdot||P_n(r,\varphi_1,\ldots,\varphi_{n-1})||^2 +\sin^2\varphi_n\cdot||r\cdot e_n||^2=r^2\cos^2\varphi_n+r^2\sin^2\varphi_n=r^2$ \checkmark
+
 \section{Funktionalmatrix und -determinante}
 Es gilt $|\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))|=r^{n-1}\prod\limits_{i=2}^{n-1}\cos^{n-1}\varphi_i$.
 \chapter{Integralberechnungen}
+\section{Die Gammafunktion $\Gamma$}
+
 \section{Inhalt der $n$-dimensionalen Kugel}
 \section{Sonstiges}%TODO:evtl. auch rausnehmen
 \chapter{Verallgemeinerungen}
-%TODO:andeuten, dass nur kurz
+Selsbstverständlich lassen sich auch viele Variationen und Verallgemeinerungen zu den Polarkoordinaten finden. Zwei hilfreiche Verallgemeinerungen werden hier kurz angedeutet.
 \section{\glqq Ellipsoidkoordinaten\grqq}%Kommentar: waren bei einer Aufgabe auf einem HM2-Übungsblatt tatsächlich hilfreich...
 Seien $a_1,\ldots,a_n>0$ fest. Die Menge $M^n:=\{x\in\R^n|\frac{x_1^2}{a_1^2}+\ldots\frac{x_n^2}{a_n^2}=1\}$ ist ein $n$-dimensionales Ellipsoid mit den Halbachsen $a_1,\ldots,a_n$. Im Spezialfall $a_1=\ldots=a_n:=r$ wird $M^n$ zu einer $n$-dimensionalen Kugel mit Radius $r$.\\
-Mithilfe einer modifizierten Form von $P_n$, nämlich $Q_n(r,\varphi_1,\ldots,\varphi_{n-1})=$, %TODO: Formel einfügen!
-lässt sich der Inhalt von $M^n$ leicht berechnen. Mit der Multilinearität der Determinante ergibt sich:\\
+Mithilfe einer modifizierten Form von $P_n$, nämlich\\ $Q_n(r,\varphi_1,\ldots,\varphi_{n-1})=\begin{pmatrix}a_1r\cos\varphi_1\cdot\ldots\cdot\cos\varphi_{n-1} \\ a_2r\sin\varphi_1\cdot\ldots\cdot\cos\varphi_{n-1} \\
+a_3r\sin\varphi_2\cdot\ldots\cdot\cos\varphi_{n-1} \\
+\vdots \\
+a_nr \sin\varphi_{n-1}
+\end{pmatrix}=\begin{pmatrix}a_1 & & & \\ & a_2 & & \\ & & \ddots & \\ & & & a_n\end{pmatrix}\cdot P_n(r,\varphi_1,\ldots,\varphi_{n-1})$,
+lässt sich der Inhalt von $M^n$ leicht berechnen. Wegen $\det(AB)=\det(A)\det(B)$ gilt:\\
 $|\det(J_{Q_n}(r,\varphi_1,\ldots,\varphi_{n-1}))|=
 a_1\cdot a_2\cdot\ldots\cdot a_n\cdot|\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))|$.
 \section{verallgemeinerte Zylinderkoordinaten}
+Man kann die Polarkoordinaten und die kartesischen Koordinaten kombinieren. Das bekannteste Beispiel sind die Zylinderkoordinaten im $\R^3$, deren erste zwei Komponenten 2-dimensionale Polarkoordinaten sind und deren dritte Komponente eine kartesische Koordinate ist. Die $(n+k)$-dimensionalen Zylinderkoordinaten verallgemeinern diese. Dabei stehe $n$ wie bisher für die Dimension der Polarkoordinaten und $k$ für die Dimension der Zylinderkoordinaten. Für $k=0$ ergeben sich die $n$-dimensionalen Polarkoordinaten.\\
+Wir definieren $Q_{n,k}:[0,\infty)\times[0, 2\pi]\times[-\frac{\pi}{2},+\frac{\pi}{2}]^{n-2}\times \R^k$ durch
+$$Q_{n,k}(r,\varphi_1,\ldots,\varphi_{n-1}, x_{n+1}, \ldots, x_{n+k})=
+\begin{pmatrix} \\ P_n(r,\varphi_1,\ldots,\varphi_{n-1}) \\ \\ 0 \\ \vdots \\ 0 \end{pmatrix}
++ \begin{pmatrix} 0 \\ \vdots \\ 0 \\ x_{n+1} \\ \vdots \\ x_{n+k} \end{pmatrix}$$
 \end{document}
