@@ -1,4 +1,4 @@
-\documentclass[a4paper,11pt]{report}
+\documentclass[a4paper,11pt]{scrartcl}
 \usepackage{graphicx}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -25,8 +25,8 @@
 % == Set the heading style ===================================================
 \setlength{\headheight}{14pt}
 %\pagestyle{fancyplain}
-\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+\renewcommand{\subsectionmark}[1]{\markright{\thesection\ #1}}
 \lhead[\fancyplain{}{\thepage}]{\fancyplain{}{\rightmark}}
 \rhead[\fancyplain{}{\leftmark}]{\fancyplain{}{\thepage}}
 \cfoot{}
@@ -48,19 +48,6 @@
 \renewcommand{\textfraction}{0.00}
 \renewcommand{\topfraction}{1.0}
 \renewcommand{\bottomfraction}{1.0}
-% ============================================================================
-
-% == German definitions for theorems etc. ==================================== 
-%\newtheorem{theorem}{Satz}[chapter]
-\newtheorem{lemma}{Lemma}[chapter]
-\newtheorem{proposition}{Proposition}[chapter]
-%\newtheorem{corollary}{Korollar}[chapter]
-\newtheorem{observation}{Beobachtung}[chapter]
-\newtheorem{fact}{Fakt}[chapter]
-%\theoremstyle{remark} 
-\theoremstyle{definition} 
-\newtheorem{remark}{Bemerkung}[chapter]
-\newtheorem{example}{Beispiel}[chapter]
 % ============================================================================
 
 % == Abkürzungen für die reellen, natürlichen, ganzen,... Zahlen =============
@@ -113,7 +100,7 @@
 \definecolor{framecolor}{gray}{0}
 %\def\FrameCommand{\fcolorbox{framecolor}{shadecolor}}
 %\MakeFramed {\FrameRestore}
-\subsection*{#1}
+\subsubsection*{#1}
 %\begin{itshape}
 }
 {
@@ -135,9 +122,6 @@
 \end{upshape}
 }
 
-\newshadetheorem{theorem}{Satz}[chapter]
-\newshadetheorem{corollary}{Korollar}[chapter]
-\newshadetheorem{definitions}{Definition}[chapter]
 
 \newenvironment{definition}[1]{
 	\begin{definitions}
@@ -163,7 +147,7 @@
 
 \shorthandoff{"}
 \clearpage\pagenumbering{arabic}
-\chapter{Motivation}
+\section{Motivation}
 Wenn mehrdimensionale Integrale in der Vorlesung eingeführt werden, d.h.
 \begin{equation}
 f(x)dx \qquad (x\in\R^n,M\subseteq \R^n, f:\R^n\to\R),\end{equation}  %TODO:globale Nummer
@@ -178,21 +162,21 @@ Nach Einführung der Polarkoordinaten lässt sich das Integral mithilfe der Subs
 \label{subst}
 \end{equation} %TODO:Formel+glob. Nr.
 viel einfacher berechnen.
-\chapter{Grundlegendes}
-\section{Vorgehensweise}
+\section{Grundlegendes}
+\subsection{Vorgehensweise}
 Die Polarkoordinaten werden als Funktion $P_n$ vom \glqq Polarkoordinatenraum\grqq{} in den kartesischen Raum induktiv definiert. Dabei dienen die bekannten Polarkoordinaten im Fall $n=2$ als Induktionsanfang. Außerdem werde ich immer noch den Fall $n=3$ explizit angeben, bei dem sich die bekannten Kugelkoordinaten ergeben.\\
 %TODO: Anschauung mit Drehung, Bilder,...???
 Darauf werden einige Eigenschaften der Funktion $P_n$ bewiesen, insbesondere wird auch die Funktionaldeterminante berechnet, die für die Substitutionsregel \eqref{subst}
 wichtig ist.
 %TODO: Anmerkung bzgl Q_n mit r\in\R, phi_1..n-1\in[-pi/2,pi/2]
-\section{einige Definitionen}
+\subsection{einige Definitionen}
 \begin{itemize}
 \item Es sei im Folgenden stets $n\in\N\setminus\{1\}$, denn für $n=1$ sind die Polarkoordinaten nicht definiert.
 \item $e_n$ bezeichne den $n$-ten kanonischen Einheitsvektor. Soweit nichts anderes gesagt ist, sei $e_n\in\R^n$, also $e_n=(0,\ldots,0,1)^T$.
 \item Als Skalarprodukt werde immer das Standardskalarprodukt im $\R^n$ verwendet, $||\bullet||$ sei im Folgenden die euklidische Norm.
 \end{itemize}
-\chapter{$P_n$: Definition und Eigenschaften}
-\section{Definition}
+\section{$P_n$: Definition und Eigenschaften}
+\subsection{Definition}
 $P_2:[0, \infty)\times [0, 2\pi]$ wird direkt definiert durch $P_2(r,\varphi_1)=\begin{pmatrix}
 r\cos\varphi_1\\ r\sin\varphi_1\end{pmatrix}$.\\
 Veranschaulichung: \\%TODO
@@ -214,7 +198,7 @@ $$P_3(r,\varphi_1, \varphi_2)=
 r\sin\varphi_1\cos\varphi_2\\
 r\sin\varphi_2\\ \end{pmatrix}$$
 
-\section{$||P_n(r,\varphi_1,\cdots,\varphi_{n-1})||$}
+\subsection{$||P_n(r,\varphi_1,\cdots,\varphi_{n-1})||$}
 Im Falle $n=2$ ergibt sich durch direktes Ausrechnen:\\
 $||P_2(r,\varphi_1)||^2=||\begin{pmatrix}r\cos\varphi_1\\ r\sin\varphi_1\end{pmatrix}||^2=
 r^2\cos^2\varphi_1+r^2\sin^2\varphi_1=r^2\cdot(\cos^2\varphi_1+\sin^2\varphi_1)=r^2$.\\
@@ -230,7 +214,7 @@ Der Beweis, dass tatsächlich $||P_n(r,\varphi_1,\ldots,\varphi_{n-1})||=r$ für
 Also gilt mit dem Satz des Pythagoras:\\
 $||P_{n+1}(r,\varphi_1,\ldots,\varphi_n)||^2=\cos^2\varphi_n\cdot||P_n(r,\varphi_1,\ldots,\varphi_{n-1})||^2 +\sin^2\varphi_n\cdot||r\cdot e_n||^2=r^2\cos^2\varphi_n+r^2\sin^2\varphi_n=r^2$ \checkmark
 
-\section{Funktionalmatrix und -determinante}
+\subsection{Funktionalmatrix und -determinante}
 Zuerst untersuchen wir die 2- und 3-dimensionalen Polarkoordinaten. Für $P_2$ ist, wie direkt nachzurechnen,\\
 $J_{P_2}(r,\varphi_1)=\begin{pmatrix}\cos\varphi_1 & -r\sin\varphi_1 \\
 \sin\varphi_1 & r\cos\varphi_1\end{pmatrix}$. Die Fuktionaldeterminante ist 
@@ -248,10 +232,22 @@ $\det(J_{P_3}(r, \varphi_1, \varphi_2 ))=
 =r^2\cos^2\varphi_1\cos^3\varphi_2+ r^2\sin^2\varphi_1\sin^2\varphi_2\cos\varphi_2+ r^2\sin^2\varphi_1\cos^3\varphi_2 + r^2\cos^2\varphi_1\sin^2\varphi_2\cos\varphi_2 \\
 = r^2\cos\varphi_2(\cos^2\varphi_1\cos^2\varphi_2+\sin^2\varphi_1\sin^2\varphi_2+\sin^2\varphi_1\cos^2\varphi_2 + \cos^2\varphi_1\sin^2\varphi_2) \\
 =r^2\cos\varphi_2(\cos^2\varphi_1(\cos^2\varphi_2+\sin^2\varphi_2)+ \sin^2\varphi_1(\cos^2\varphi_2+\sin^2\varphi_2))\\ =r^2\cos\varphi_2(\cos^2\varphi_1+\sin^2\varphi_1)=r^2\cos\varphi_2.$\\
-Wir berechnen nun für allgemeines $n$ die Spalten der Funktionalmatrix separat. Wieder benutzen wir eine Induktion, wobei wir anf%TODO
+Wir berechnen nun für allgemeines $n$ die Spalten der Funktionalmatrix separat.\\
+Da $\cos\varphi_n$ und $\sin\varphi_n$ nicht von $r$ oder $\varphi_k \quad (k=1,\ldots,n-1)$ abhängt und $P_n(r,\varphi_1,\ldots,\varphi_{n-1})$ nicht von $\varphi_n$, gilt:\\[1.5em]
+$ \partial_r P_{n+1}(r,\varphi_1,\ldots,\varphi_n)= \partial_r (P_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\cos\varphi_n) + \partial_r (r\sin\varphi_n e_{n+1})= \partial_r P_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\cos\varphi_n + \sin\varphi_n e_{n+1} = \begin{pmatrix}\partial_r P_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\cos\varphi_n \\ \sin\varphi_n \end{pmatrix} $\\[1.5em]
+$ \partial_{\varphi_k}P_{n+1}(r,\varphi_1,\ldots,\varphi_n) = \partial_{\varphi_k} (P_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\cos\varphi_n) + \partial_{\varphi_k} (r\sin\varphi_n e_{n+1})= \partial_{\varphi_k} P_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\cos\varphi_n = \begin{pmatrix}\partial_{\varphi_k} P_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\cos\varphi_n \\ 0 \end{pmatrix} \qquad (k=1,\ldots,n-1)$\\[1.5em]
+$ \partial_{\varphi_n}P_{n+1}(r,\varphi_1,\ldots,\varphi_n)=\partial_{\varphi_n}(P_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\cos\varphi_n) + \partial_{\varphi_n} (r\sin\varphi_n e_{n+1})=-(P_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\sin\varphi_n+r\cos\varphi_n e_{n+1} = \begin{pmatrix}-P_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\sin\varphi_n \\ r\cos\varphi_n \end{pmatrix} $\\[1.5em]
+Behauptung:
+\begin{equation}
+\label{det}\det(J_{P_{n+1}}(r,\varphi_1,\ldots,\varphi_n))=\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))\cdot r\cos^{n-1}\varphi_n
+\end{equation}
+Denn für $\cos\varphi_n=0$ ist wegen $\partial_{\varphi_1}P_{n+1}(r,\varphi_1,\ldots,\varphi_n)=0$ schon $\det(J_{P_{n+1}}(r,\varphi_1,\ldots,\varphi_n))=0$.\\
+Für $\cos\varphi_n\neq 0$ schließlich addiert man das $r\sin\varphi_n(\cos\varphi_n)^{-1}$-fache der ersten zur letzten Spalte. Da $r\partial_r P_n(r,\varphi_1,\ldots,\varphi_{n-1})=P_n(r,\varphi_1,\ldots,\varphi_{n-1})$, geht diese in $r(\cos\varphi_n)^{-1}e_n$ über. Wenn man nach der letzten Spalte dann entwickelt, entsteht in der Restmatrix gerade $\cos\varphi_n J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1})$.\\
+Also ist $\det(J_{P_{n+1}}(r,\varphi_1,\ldots,\varphi_n))=r(\cos\varphi_n)^{-1}\det(\cos\varphi_n J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1})) = r(\cos\varphi_n)^{n-1}\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))$. Daher gilt \eqref{det}.
+Damit und mit $\det(J_{P_2}(r, \varphi_1))=r$ folgt rekursiv:\\
 Es gilt $\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))=|\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))|=r^{n-1}\prod\limits_{i=2}^{n-1}\cos^{n-1}\varphi_i$.
-\chapter{Integralberechnungen}
-\section{Die Gammafunktion $\Gamma$}
+\section{Integralberechnungen}
+\subsection{Die Gammafunktion $\Gamma$}
 Um das Volumen der Kugel auszurechnen, benötigt man die Gammafunktion \\$\Gamma:\R\setminus(-\N_0)\to\R$ (sie ist auf ganz $\C\setminus(-\N_0)$ erklärt, was wir hier aber nicht brauchen). Einige wichtige Eigenschaften werden hier ohne Beweis angegeben:
 \begin{itemize}
 \item $\Gamma(x+1)=x\cdot\Gamma(z)$
@@ -259,7 +255,7 @@ Um das Volumen der Kugel auszurechnen, benötigt man die Gammafunktion \\$\Gamma
 \item $\Gamma(\frac{1}{2})=\sqrt{\pi}\Rightarrow\Gamma(n+\frac{1}{2})=\sqrt{\pi}\cdot\frac{1}{2}\cdot\frac{3}{2}\cdot\ldots\cdot (n-\frac{1}{2})=\sqrt{\pi}\cdot 1\cdot 3\cdot\ldots\cdot (2n-1)\quad (n\in\N)$
 \item und $\int\limits_0^1 (1-t)^{w-1}\cdot t^{z-1}dt=\frac{\Gamma(z)\Gamma(w)}{\Gamma(z+w)}$ (siehe z.B. Königsberger, Analysis 2, Kapitel 6.6):
 \end{itemize}
-\section{Inhalt der $n$-dimensionalen Kugel}
+\subsection{Inhalt der $n$-dimensionalen Kugel}
 Sei $\kappa_n$ der Inhalt der $n$-dimensionalen Kugel $D(R)^n$. Sei $A:=[0,R]\times[0,2\pi]\times[-\frac{\pi}{2},+\frac{\pi}{2}]^{n-2}$. Dann ist $P_n(A)=D(R)^n$. Nun ist aber $P_n$ auf $A$ nicht injektiv.\\
 Allerdings ist $\{x\in A|\exists y\in A: x\neq y \wedge P_n(x)=P_n(y)\}$ eine Lebesgue-Nullmenge. Also darf man die Substitutionsregel \eqref{subst} anwenden. Sie liefert
 \[\int\limits_{D(R)^n}dx=\int\limits_A |\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))|da=
@@ -276,11 +272,14 @@ $$\left( \begin{array}{c} \xi= \sqrt{t} \\ d\xi = \frac{1}{2\sqrt{t}}dt\end{arra
 =\frac{\Gamma(\frac{1}{2})\Gamma(\frac{n}{2})}{\Gamma(\frac{n+1}{2})}$$
 Im zweidimensionalen ist damit $\kappa_2=\int\limits_0^R rdr\cdot \int\limits_0^{2\pi}d\varphi_1 d\varphi_1=\frac{R^2}{2}\cdot 2\pi=\pi R^2$.\\
 In $\R^3$ ist $\kappa_3=\int\limits_0^R rdr\cdot \int\limits_0^{2\pi}d\varphi_1 d\varphi_1\cdot \int\limits_{-\frac{\pi}{2}}^\frac{\pi}{2} \cos\varphi_2 d\varphi_2=\frac{R^3}{3}\cdot 2\pi\cdot[\sin\varphi_2]_{-\frac{\pi}{2}}^\frac{\pi}{2}=\frac{4\pi}{3} R^3$.
-
-\section{Sonstiges}%TODO:evtl. auch rausnehmen
-\chapter{Verallgemeinerungen}
+Nun zum allgemeinen Teil:\\
+$\kappa_n=2\pi\frac{R^n}{n}\prod\limits_{k=2}^{n-1}\left(\int\limits_{-\frac{\pi}{2}}^\frac{\pi}{2}\cos^{k-1}\varphi_k d\varpi_k\right)=2\pi\frac{R^n}{n}\cdot\sqrt{\pi}^{n-2}\cdot\frac{\Gamma(1)}{\Gamma(\frac{3}{2})}\cdot\frac{\Gamma(\frac{3}{2})}{\Gamma(2)}\cdot\ldots\cdot\frac{\Gamma(\frac{n-1}{2})}{\Gamma(\frac{n}{2})}
+\\=\begin{cases}\frac{2\sqrt{\pi}^n R^n}{(q-1)!\cdot n}; \qquad n=2q, q\in\N \\ \frac{2^{q+1}\sqrt{\pi}^{n-1}R^n}{1\cdot 3\cdot 5\cdot \ldots\cdot(n-2)\cdot n}; \qquad n=2q+1, q\in\N\end{cases}$\\
+$=\begin{cases}\frac{\pi^q R^{2q}}{q!}; \qquad n=2q, q\in\N \\ \frac{2^{q+1}\sqrt{\pi}^q R^{2q+1}}{1\cdot 3\cdot (2q+1)} \qquad n=2q+1, q\in\N\end{cases} $
+\subsection{Sonstiges}%TODO:evtl. auch rausnehmen
+\section{Verallgemeinerungen}
 Selsbstverständlich lassen sich auch viele Variationen und Verallgemeinerungen zu den Polarkoordinaten finden. Zwei hilfreiche Verallgemeinerungen werden hier kurz angedeutet.
-\section{\glqq Ellipsoidkoordinaten\grqq}%Kommentar: waren bei einer Aufgabe auf einem HM2-Übungsblatt tatsächlich hilfreich...
+\subsection{\glqq Ellipsoidkoordinaten\grqq}%Kommentar: waren bei einer Aufgabe auf einem HM2-Übungsblatt tatsächlich hilfreich...
 Seien $a_1,\ldots,a_n>0$ fest. Die Menge $M^n:=\{x\in\R^n|\frac{x_1^2}{a_1^2}+\ldots\frac{x_n^2}{a_n^2}=1\}$ ist ein $n$-dimensionales Ellipsoid mit den Halbachsen $a_1,\ldots,a_n$. Im Spezialfall $a_1=\ldots=a_n:=r$ wird $M^n$ zu einer $n$-dimensionalen Kugel mit Radius $r$.\\
 Mithilfe einer modifizierten Form von $P_n$, nämlich\\ $Q_n(r,\varphi_1,\ldots,\varphi_{n-1})=\begin{pmatrix}a_1r\cos\varphi_1\cdot\ldots\cdot\cos\varphi_{n-1} \\ a_2r\sin\varphi_1\cdot\ldots\cdot\cos\varphi_{n-1} \\
 a_3r\sin\varphi_2\cdot\ldots\cdot\cos\varphi_{n-1} \\
@@ -290,7 +289,7 @@ a_nr \sin\varphi_{n-1}
 lässt sich der Inhalt von $M^n$ leicht berechnen. Wegen $\det(AB)=\det(A)\det(B)$ gilt:\\
 $|\det(J_{Q_n}(r,\varphi_1,\ldots,\varphi_{n-1}))|=
 a_1\cdot a_2\cdot\ldots\cdot a_n\cdot|\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))|$.
-\section{verallgemeinerte Zylinderkoordinaten}
+\subsection{verallgemeinerte Zylinderkoordinaten}
 Man kann die Polarkoordinaten und die kartesischen Koordinaten kombinieren. Das bekannteste Beispiel sind die Zylinderkoordinaten im $\R^3$, deren erste zwei Komponenten 2-dimensionale Polarkoordinaten sind und deren dritte Komponente eine kartesische Koordinate ist. Die $(n+k)$-dimensionalen Zylinderkoordinaten verallgemeinern diese. Dabei stehe $n$ wie bisher für die Dimension der Polarkoordinaten und $k$ für die Dimension der Zylinderkoordinaten. Für $k=0$ ergeben sich die $n$-dimensionalen Polarkoordinaten.\\
 Wir definieren $Q_{n,k}:[0,\infty)\times[0, 2\pi]\times[-\frac{\pi}{2},+\frac{\pi}{2}]^{n-2}\times \R^k$ durch
 $$Q_{n,k}(r,\varphi_1,\ldots,\varphi_{n-1}, x_{n+1}, \ldots, x_{n+k})=
