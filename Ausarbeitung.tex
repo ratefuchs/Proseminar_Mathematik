@@ -165,19 +165,24 @@
 \clearpage\pagenumbering{arabic}
 \chapter{Motivation}
 Wenn mehrdimensionale Integrale in der Vorlesung eingeführt werden, d.h.
-$$\int\limits_M f(x)dx \qquad (x\in\R^n,M\subseteq \R^n, f:\R^n\to\R),$$ %TODO:globale Nummer
+\begin{equation}
+f(x)dx \qquad (x\in\R^n,M\subseteq \R^n, f:\R^n\to\R),\end{equation}  %TODO:globale Nummer
 ist eine der ersten Funktionen, die integriert wird, $f\const 1$. Damit wird der Inhalt (je nach Dimension Fläche, Volumen,$\ldots$) berechnet.\\
 Für einfache Mengen wie den $n$-dimensionalen Würfel %TODO:Bilder Würfel & Kugel für n=1..3
-ist das mithilfe des Satzes von Fubini noch leicht machbar (man bekommt den Inhalt $1$). Für eine weitere regelmäßige Menge, die $n$-dimensionale Kugel $D^n:=\{(x_1,\cdots,x_n)\in\R^n|x_1^2+\cdots+x\_n^2\leq 1\}$, ist das ganze ungleich komplizierter. Fubini liefert
-$$.$$%TODO:Formel
+ist das mithilfe des Satzes von Fubini noch leicht machbar (man bekommt den Inhalt $1$). Für eine weitere regelmäßige Menge, die $n$-dimensionale Kugel $D(R)^n:=\{(x_1,\cdots,x_n)\in\R^n|x_1^2+\cdots+x\_n^2\leq R^2\}$, ist das ganze ungleich komplizierter. Fubini liefert
+\begin{equation}
+\label{fubini}
+\end{equation} %TODO:Formel
 Nach Einführung der Polarkoordinaten lässt sich das Integral mithilfe der Substitutionsregel
-$$$$%TODO:Formel+glob. Nr.
+\begin{equation}
+\label{subst}
+\end{equation} %TODO:Formel+glob. Nr.
 viel einfacher berechnen.
 \chapter{Grundlegendes}
 \section{Vorgehensweise}
 Die Polarkoordinaten werden als Funktion $P_n$ vom \glqq Polarkoordinatenraum\grqq{} in den kartesischen Raum induktiv definiert. Dabei dienen die bekannten Polarkoordinaten im Fall $n=2$ als Induktionsanfang. Außerdem werde ich immer noch den Fall $n=3$ explizit angeben, bei dem sich die bekannten Kugelkoordinaten ergeben.\\
 %TODO: Anschauung mit Drehung, Bilder,...???
-Darauf werden einige Eigenschaften der Funktion $P_n$ bewiesen, insbesondere wird auch die Funktionaldeterminante berechnet, die für die Substitutionsregel %TODO:Referenz auf Formel
+Darauf werden einige Eigenschaften der Funktion $P_n$ bewiesen, insbesondere wird auch die Funktionaldeterminante berechnet, die für die Substitutionsregel \eqref{subst}
 wichtig ist.
 %TODO: Anmerkung bzgl Q_n mit r\in\R, phi_1..n-1\in[-pi/2,pi/2]
 \section{einige Definitionen}
@@ -226,11 +231,52 @@ Also gilt mit dem Satz des Pythagoras:\\
 $||P_{n+1}(r,\varphi_1,\ldots,\varphi_n)||^2=\cos^2\varphi_n\cdot||P_n(r,\varphi_1,\ldots,\varphi_{n-1})||^2 +\sin^2\varphi_n\cdot||r\cdot e_n||^2=r^2\cos^2\varphi_n+r^2\sin^2\varphi_n=r^2$ \checkmark
 
 \section{Funktionalmatrix und -determinante}
-Es gilt $|\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))|=r^{n-1}\prod\limits_{i=2}^{n-1}\cos^{n-1}\varphi_i$.
+Zuerst untersuchen wir die 2- und 3-dimensionalen Polarkoordinaten. Für $P_2$ ist, wie direkt nachzurechnen,\\
+$J_{P_2}(r,\varphi_1)=\begin{pmatrix}\cos\varphi_1 & -r\sin\varphi_1 \\
+\sin\varphi_1 & r\cos\varphi_1\end{pmatrix}$. Die Fuktionaldeterminante ist 
+$$\det (J_{P_2}(r,\varphi_1))=\det\begin{pmatrix}\cos\varphi_1 & -r\sin\varphi_1 \\
+\sin\varphi_1 & r\cos\varphi_1\end{pmatrix}=r\cos^2\varphi_1+r\sin^2\varphi_1 =r(\cos^2\varphi_1+\sin^2\varphi_1)=r.$$
+Im Fall $n=3$ ist \\
+$J_{P_3}(r, \varphi_1, \varphi_2 )=
+\begin{pmatrix} \cos\varphi_1\cos\varphi_2 & -r\sin\varphi_1\cos\varphi_2 & -r\cos\varphi_1\sin\varphi_2 \\ 
+\sin\varphi_1\cos\varphi_2 & r\cos\varphi_1\cos\varphi_2 & -r\sin\varphi_1\sin\varphi_2 \\
+\sin\varphi_2 & 0 & r\cos\varphi_2 \end{pmatrix}$ und mit Sarrus\\
+$\det(J_{P_3}(r, \varphi_1, \varphi_2 ))=
+\det\begin{pmatrix} \cos\varphi_1\cos\varphi_2 & -r\sin\varphi_1\cos\varphi_2 & -r\cos\varphi_1\sin\varphi_2 \\ 
+\sin\varphi_1\cos\varphi_2 & r\cos\varphi_1\cos\varphi_2 & -r\sin\varphi_1\sin\varphi_2 \\
+\sin\varphi_2 & 0 & r\cos\varphi_2 \end{pmatrix}\\
+=r^2\cos^2\varphi_1\cos^3\varphi_2+ r^2\sin^2\varphi_1\sin^2\varphi_2\cos\varphi_2+ r^2\sin^2\varphi_1\cos^3\varphi_2 + r^2\cos^2\varphi_1\sin^2\varphi_2\cos\varphi_2 \\
+= r^2\cos\varphi_2(\cos^2\varphi_1\cos^2\varphi_2+\sin^2\varphi_1\sin^2\varphi_2+\sin^2\varphi_1\cos^2\varphi_2 + \cos^2\varphi_1\sin^2\varphi_2) \\
+=r^2\cos\varphi_2(\cos^2\varphi_1(\cos^2\varphi_2+\sin^2\varphi_2)+ \sin^2\varphi_1(\cos^2\varphi_2+\sin^2\varphi_2))\\ =r^2\cos\varphi_2(\cos^2\varphi_1+\sin^2\varphi_1)=r^2\cos\varphi_2.$\\
+Wir berechnen nun für allgemeines $n$ die Spalten der Funktionalmatrix separat. Wieder benutzen wir eine Induktion, wobei wir anf%TODO
+Es gilt $\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))=|\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))|=r^{n-1}\prod\limits_{i=2}^{n-1}\cos^{n-1}\varphi_i$.
 \chapter{Integralberechnungen}
 \section{Die Gammafunktion $\Gamma$}
-
+Um das Volumen der Kugel auszurechnen, benötigt man die Gammafunktion \\$\Gamma:\R\setminus(-\N_0)\to\R$ (sie ist auf ganz $\C\setminus(-\N_0)$ erklärt, was wir hier aber nicht brauchen). Einige wichtige Eigenschaften werden hier ohne Beweis angegeben:
+\begin{itemize}
+\item $\Gamma(x+1)=x\cdot\Gamma(z)$
+\item $\Gamma(1)=1\Rightarrow\Gamma(k)=(k-1)!\quad (k\in\N)$
+\item $\Gamma(\frac{1}{2})=\sqrt{\pi}\Rightarrow\Gamma(n+\frac{1}{2})=\sqrt{\pi}\cdot\frac{1}{2}\cdot\frac{3}{2}\cdot\ldots\cdot (n-\frac{1}{2})=\sqrt{\pi}\cdot 1\cdot 3\cdot\ldots\cdot (2n-1)\quad (n\in\N)$
+\item und $\int\limits_0^1 (1-t)^{w-1}\cdot t^{z-1}dt=\frac{\Gamma(z)\Gamma(w)}{\Gamma(z+w)}$ (siehe z.B. Königsberger, Analysis 2, Kapitel 6.6):
+\end{itemize}
 \section{Inhalt der $n$-dimensionalen Kugel}
+Sei $\kappa_n$ der Inhalt der $n$-dimensionalen Kugel $D(R)^n$. Sei $A:=[0,R]\times[0,2\pi]\times[-\frac{\pi}{2},+\frac{\pi}{2}]^{n-2}$. Dann ist $P_n(A)=D(R)^n$. Nun ist aber $P_n$ auf $A$ nicht injektiv.\\
+Allerdings ist $\{x\in A|\exists y\in A: x\neq y \wedge P_n(x)=P_n(y)\}$ eine Lebesgue-Nullmenge. Also darf man die Substitutionsregel \eqref{subst} anwenden. Sie liefert
+\[\int\limits_{D(R)^n}dx=\int\limits_A |\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))|da=
+\int\limits_A r^{n-1}\prod\limits_{i=2}^{n-1}\cos^{n-1}\varphi_i d(r,\varphi_1,\ldots,\varphi_{n-1}) \]
+\begin{equation}\label{kappa}\stackrel{\eqref{fubini}}{=}\int\limits_0^R r^{n-1}dr\cdot\int\limits_0^{2\pi}d\varphi_1\cdot \\ \prod\limits_{i=2}^{n-1}\left(\int\limits_{-\frac{\pi}{2}}^\frac{\pi}{2} \cos^{i-1}\varphi_i d\varphi_i\right)
+\end{equation}
+Wir berechnen die Faktoren von \eqref{kappa} einzeln:
+Zuerst ist $\int\limits_0^{2\pi}d\varphi_1=2\pi$ und $\int\limits_0^R r^{n-1}dr=\left[\frac{r^n}{n}\right]_0^R=\frac{R^n}{n}$. Außerdem:
+$$\int\limits_{-\frac{\pi}{2}}^\frac{\pi}{2} \cos^{n-1}\varphi_n d\varphi_n=\int\limits_{-\frac{\pi}{2}}^\frac{\pi}{2} \sqrt{1-\sin^2\varphi_n}^{n-1} d\varphi_n$$
+$$\left( \begin{array}{c} \varphi_n= \arcsin \xi \\ d\varphi_n = \frac{1}{\sqrt{1-\xi^2}}d\xi\end{array}\right)
+=\int\limits_{-1}^1 \sqrt{1-\xi^2}^{n-2}d\xi=2\int\limits_0^1\sqrt{1-\xi^2}^{n-2}d\xi$$
+$$\left( \begin{array}{c} \xi= \sqrt{t} \\ d\xi = \frac{1}{2\sqrt{t}}dt\end{array}\right)
+=\int\limits_0^1 (1-t)^\frac{n-2}{2}t^{-\frac{1}{2}}dt = \int\limits_0^1 (1-t)^{\frac{n}{2}-1}t^{\frac{1}{2}-1}dt
+=\frac{\Gamma(\frac{1}{2})\Gamma(\frac{n}{2})}{\Gamma(\frac{n+1}{2})}$$
+Im zweidimensionalen ist damit $\kappa_2=\int\limits_0^R rdr\cdot \int\limits_0^{2\pi}d\varphi_1 d\varphi_1=\frac{R^2}{2}\cdot 2\pi=\pi R^2$.\\
+In $\R^3$ ist $\kappa_3=\int\limits_0^R rdr\cdot \int\limits_0^{2\pi}d\varphi_1 d\varphi_1\cdot \int\limits_{-\frac{\pi}{2}}^\frac{\pi}{2} \cos\varphi_2 d\varphi_2=\frac{R^3}{3}\cdot 2\pi\cdot[\sin\varphi_2]_{-\frac{\pi}{2}}^\frac{\pi}{2}=\frac{4\pi}{3} R^3$.
+
 \section{Sonstiges}%TODO:evtl. auch rausnehmen
 \chapter{Verallgemeinerungen}
 Selsbstverständlich lassen sich auch viele Variationen und Verallgemeinerungen zu den Polarkoordinaten finden. Zwei hilfreiche Verallgemeinerungen werden hier kurz angedeutet.
@@ -249,5 +295,9 @@ Man kann die Polarkoordinaten und die kartesischen Koordinaten kombinieren. Das 
 Wir definieren $Q_{n,k}:[0,\infty)\times[0, 2\pi]\times[-\frac{\pi}{2},+\frac{\pi}{2}]^{n-2}\times \R^k$ durch
 $$Q_{n,k}(r,\varphi_1,\ldots,\varphi_{n-1}, x_{n+1}, \ldots, x_{n+k})=
 \begin{pmatrix} \\ P_n(r,\varphi_1,\ldots,\varphi_{n-1}) \\ \\ 0 \\ \vdots \\ 0 \end{pmatrix}
-+ \begin{pmatrix} 0 \\ \vdots \\ 0 \\ x_{n+1} \\ \vdots \\ x_{n+k} \end{pmatrix}$$
++ \begin{pmatrix} 0 \\ \vdots \\ 0 \\ x_{n+1} \\ \vdots \\ x_{n+k} \end{pmatrix}.$$
+Für die Jacobimatrix gilt $$J_{Q_{n,k}}(r,\varphi_1,\ldots,\varphi_{n-1}, x_{n+1}, \ldots, x_{n+k})=\begin{pmatrix}
+J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}) & 0 \\ 0 & I_k
+\end{pmatrix}$$
+(wobei $I_k\in\R^{k\times k}$ Einheitsmatrix). Aufgrund der Blockform ist $\det (J_{Q_{n,k}}(r,\varphi_1,\ldots,\varphi_{n-1}, x_{n+1}, \ldots, x_{n+k})) = \det (J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))\cdot \det I_k=\det (J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))$.
 \end{document}
