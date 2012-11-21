@@ -138,7 +138,7 @@
     		Wintersemester 2012/2013}\\[5ex]}
 	\end{center}
 	\begin{center}
-		Simon Bischof; 06.12.2012 %TODO: exaktes Datum
+		Simon Bischof; 06.12.2012
 	\end{center}
 \end{titlepage}
 %\maketitle
@@ -150,36 +150,35 @@
 \section{Motivation}
 Wenn mehrdimensionale Integrale in der Vorlesung eingeführt werden, d.h.
 \begin{equation}
-f(x)dx \qquad (x\in\R^n,M\subseteq \R^n, f:\R^n\to\R),\end{equation}  %TODO:globale Nummer
+f(x)dx \qquad (x\in\R^n,M\subseteq \R^n, f:\R^n\to\R),\end{equation}
 ist eine der ersten Funktionen, die integriert wird, $f\const 1$. Damit wird der Inhalt (je nach Dimension Fläche, Volumen,$\ldots$) berechnet.\\
-Für einfache Mengen wie den $n$-dimensionalen Würfel %TODO:Bilder Würfel & Kugel für n=1..3
-ist das mithilfe des Satzes von Fubini noch leicht machbar (man bekommt den Inhalt $1$). Für eine weitere regelmäßige Menge, die $n$-dimensionale Kugel $D(R)^n:=\{(x_1,\cdots,x_n)\in\R^n|x_1^2+\cdots+x\_n^2\leq R^2\}$, ist das ganze ungleich komplizierter. Fubini liefert
-\begin{equation}
-\label{fubini}
-\end{equation} %TODO:Formel
+\includegraphics[scale=0.5]{images/nDWürfelKugel.jpg}\\
+Für einfache Mengen wie den $n$-dimensionalen Würfel ist das mithilfe des Satzes von Fubini noch leicht machbar (man bekommt den Inhalt $1$). Für eine weitere regelmäßige Menge, die $n$-dimensionale Kugel $D(R)^n:=\{(x_1,\cdots,x_n)\in\R^n|x_1^2+\cdots+x_n^2\leq R^2\}$, ist das ganze ungleich komplizierter. Fubini liefert
+$$\int\limits_{D(R)^n} d(x_1,\ldots,x_n)= \int\limits_0^R\int\limits_0^{\sqrt{R^2-x_1^2}}\int\limits_0^{\sqrt{R^2-x_1^2-x_2^2}}\ldots dx_3 dx_2 dx_1.$$
 Nach Einführung der Polarkoordinaten lässt sich das Integral mithilfe der Substitutionsregel
 \begin{equation}
 \label{subst}
-\end{equation} %TODO:Formel+glob. Nr.
+\int\limits_{g(A)}f(v)dv=\int\limits_A f(u)|\det(J_g(u))| du, \qquad g:A\to g(A) \text{injektiv.}
+\end{equation}
 viel einfacher berechnen.
 \section{Grundlegendes}
 \subsection{Vorgehensweise}
-Die Polarkoordinaten werden als Funktion $P_n$ vom \glqq Polarkoordinatenraum\grqq{} in den kartesischen Raum induktiv definiert. Dabei dienen die bekannten Polarkoordinaten im Fall $n=2$ als Induktionsanfang. Außerdem werde ich immer noch den Fall $n=3$ explizit angeben, bei dem sich die bekannten Kugelkoordinaten ergeben.\\
-%TODO: Anschauung mit Drehung, Bilder,...???
+Die Polarkoordinaten werden als Funktion $P_n$ vom \glqq Polarkoordinatenraum\grqq{} in den kartesischen Raum induktiv definiert. Dabei dienen die bekannten Polarkoordinaten im Fall $n=2$ als Induktionsanfang. Außerdem werde ich immer noch den Fall $n=3$ explizit angeben, bei dem sich die ebenfalls bekannten Kugelkoordinaten ergeben.\\
+\includegraphics[scale=0.5]{images/PolarKugelkoordinaten.jpg}\\
 Darauf werden einige Eigenschaften der Funktion $P_n$ bewiesen, insbesondere wird auch die Funktionaldeterminante berechnet, die für die Substitutionsregel \eqref{subst}
-wichtig ist.
-%TODO: Anmerkung bzgl Q_n mit r\in\R, phi_1..n-1\in[-pi/2,pi/2]
+wichtig ist.\\
+Bemerkung: $n$-dimensionale Polarkoordinaten lassen sich auch auf eine leicht andere Art und Weise definieren, so dass sie auch im Fall $n=1$ definiert sind. Außerdem ergeben sich dabei noch andere Vereinfachungen (Gleichbehandlung aller Winkelvariablen). Nachteil ist, dass sich dann für $n=2$ und $n=3$ nicht die bekannten Polar- bzw. Kugelkoordinaten ergeben.
 \subsection{einige Definitionen}
 \begin{itemize}
 \item Es sei im Folgenden stets $n\in\N\setminus\{1\}$, denn für $n=1$ sind die Polarkoordinaten nicht definiert.
 \item $e_n$ bezeichne den $n$-ten kanonischen Einheitsvektor. Soweit nichts anderes gesagt ist, sei $e_n\in\R^n$, also $e_n=(0,\ldots,0,1)^T$.
 \item Als Skalarprodukt werde immer das Standardskalarprodukt im $\R^n$ verwendet, $||\bullet||$ sei im Folgenden die euklidische Norm.
+\item Für Mengen $A\subset \R^n$ bezeichne $|A|$ das Volumen von $A$.
 \end{itemize}
 \section{$P_n$: Definition und Eigenschaften}
 \subsection{Definition}
 $P_2:[0, \infty)\times [0, 2\pi]$ wird direkt definiert durch $P_2(r,\varphi_1)=\begin{pmatrix}
 r\cos\varphi_1\\ r\sin\varphi_1\end{pmatrix}$.\\
-Veranschaulichung: \\%TODO
 Nun wird für $n>2$ die Funktion $P_n:[0,\infty)\times[0, 2\pi]\times[-\frac{\pi}{2},+\frac{\pi}{2}]^{n-2}$ induktiv definiert:\\[0.5em]
 $P_n(r,\varphi_1, \varphi_2, \ldots, \varphi_{n-1})=\begin{pmatrix}
 P_{n-1}(r,\varphi_1,\cdots,\varphi_{n-2})\cdot\cos\varphi_{n-1} \\ r\cdot\sin \varphi_{n-1}\end{pmatrix}
@@ -233,19 +232,20 @@ $\det(J_{P_3}(r, \varphi_1, \varphi_2 ))=
 = r^2\cos\varphi_2(\cos^2\varphi_1\cos^2\varphi_2+\sin^2\varphi_1\sin^2\varphi_2+\sin^2\varphi_1\cos^2\varphi_2 + \cos^2\varphi_1\sin^2\varphi_2) \\
 =r^2\cos\varphi_2(\cos^2\varphi_1(\cos^2\varphi_2+\sin^2\varphi_2)+ \sin^2\varphi_1(\cos^2\varphi_2+\sin^2\varphi_2))\\ =r^2\cos\varphi_2(\cos^2\varphi_1+\sin^2\varphi_1)=r^2\cos\varphi_2.$\\
 Wir berechnen nun für allgemeines $n$ die Spalten der Funktionalmatrix separat.\\
-Da $\cos\varphi_n$ und $\sin\varphi_n$ nicht von $r$ oder $\varphi_k \quad (k=1,\ldots,n-1)$ abhängt und $P_n(r,\varphi_1,\ldots,\varphi_{n-1})$ nicht von $\varphi_n$, gilt:\\[1.5em]
-$ \partial_r P_{n+1}(r,\varphi_1,\ldots,\varphi_n)= \partial_r (P_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\cos\varphi_n) + \partial_r (r\sin\varphi_n e_{n+1})= \partial_r P_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\cos\varphi_n + \sin\varphi_n e_{n+1} = \begin{pmatrix}\partial_r P_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\cos\varphi_n \\ \sin\varphi_n \end{pmatrix} $\\[1.5em]
-$ \partial_{\varphi_k}P_{n+1}(r,\varphi_1,\ldots,\varphi_n) = \partial_{\varphi_k} (P_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\cos\varphi_n) + \partial_{\varphi_k} (r\sin\varphi_n e_{n+1})= \partial_{\varphi_k} P_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\cos\varphi_n = \begin{pmatrix}\partial_{\varphi_k} P_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\cos\varphi_n \\ 0 \end{pmatrix} \qquad (k=1,\ldots,n-1)$\\[1.5em]
-$ \partial_{\varphi_n}P_{n+1}(r,\varphi_1,\ldots,\varphi_n)=\partial_{\varphi_n}(P_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\cos\varphi_n) + \partial_{\varphi_n} (r\sin\varphi_n e_{n+1})=-(P_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\sin\varphi_n+r\cos\varphi_n e_{n+1} = \begin{pmatrix}-P_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\sin\varphi_n \\ r\cos\varphi_n \end{pmatrix} $\\[1.5em]
+Zur Vereinfachung der Rechnung setzen wir $\bar{P}_n(r,\varphi_1,\ldots,\varphi_{n-1})=\begin{pmatrix}P_n(r,\varphi_1,\ldots,\varphi_{n-1}) \\ 0 \end{pmatrix}\cdot\cos\varphi_n$.\\
+Da $\cos\varphi_n$ und $\sin\varphi_n$ nicht von $r$ oder $\varphi_k \quad (k=1,\ldots,n-1)$ abhängen und $P_n(r,\varphi_1,\ldots,\varphi_{n-1})$ nicht von $\varphi_n$, gilt:\\[1.5em]
+$ \partial_r P_{n+1}(r,\varphi_1,\ldots,\varphi_n)= \partial_r (\bar{P}_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\cos\varphi_n) + \partial_r (r\sin\varphi_n e_{n+1})= \partial_r \bar{P}_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\cos\varphi_n + \sin\varphi_n e_{n+1} = \begin{pmatrix}\partial_r P_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\cos\varphi_n \\ \sin\varphi_n \end{pmatrix} $\\[1.5em]
+$ \partial_{\varphi_k}P_{n+1}(r,\varphi_1,\ldots,\varphi_n) = \partial_{\varphi_k} (\bar{P}_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\cos\varphi_n) + \partial_{\varphi_k} (r\sin\varphi_n e_{n+1})= \partial_{\varphi_k} \bar{P}_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\cos\varphi_n = \begin{pmatrix}\partial_{\varphi_k} P_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\cos\varphi_n \\ 0 \end{pmatrix} \qquad (k=1,\ldots,n-1)$\\[1.5em]
+$ \partial_{\varphi_n}P_{n+1}(r,\varphi_1,\ldots,\varphi_n)=\partial_{\varphi_n}(\bar{P}_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\cos\varphi_n) + \partial_{\varphi_n} (r\sin\varphi_n e_{n+1})=-(\bar{P}_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\sin\varphi_n+r\cos\varphi_n e_{n+1} = \begin{pmatrix}-P_n(r,\varphi_1,\ldots,\varphi_{n-1})\cdot\sin\varphi_n \\ r\cos\varphi_n \end{pmatrix} $\\[1.5em]
 Behauptung:
 \begin{equation}
 \label{det}\det(J_{P_{n+1}}(r,\varphi_1,\ldots,\varphi_n))=\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))\cdot r\cos^{n-1}\varphi_n
 \end{equation}
-Denn für $\cos\varphi_n=0$ ist wegen $\partial_{\varphi_1}P_{n+1}(r,\varphi_1,\ldots,\varphi_n)=0$ schon $\det(J_{P_{n+1}}(r,\varphi_1,\ldots,\varphi_n))=0$.\\
+Für $\cos\varphi_n=0$ ist wegen $\partial_{\varphi_1}P_{n+1}(r,\varphi_1,\ldots,\varphi_n)=0$ schon $\det(J_{P_{n+1}}(r,\varphi_1,\ldots,\varphi_n))=0$.\\
 Für $\cos\varphi_n\neq 0$ schließlich addiert man das $r\sin\varphi_n(\cos\varphi_n)^{-1}$-fache der ersten zur letzten Spalte. Da $r\partial_r P_n(r,\varphi_1,\ldots,\varphi_{n-1})=P_n(r,\varphi_1,\ldots,\varphi_{n-1})$, geht diese in $r(\cos\varphi_n)^{-1}e_n$ über. Wenn man nach der letzten Spalte dann entwickelt, entsteht in der Restmatrix gerade $\cos\varphi_n J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1})$.\\
 Also ist $\det(J_{P_{n+1}}(r,\varphi_1,\ldots,\varphi_n))=r(\cos\varphi_n)^{-1}\det(\cos\varphi_n J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1})) = r(\cos\varphi_n)^{n-1}\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))$. Daher gilt \eqref{det}.
 Damit und mit $\det(J_{P_2}(r, \varphi_1))=r$ folgt rekursiv:\\
-Es gilt $\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))=|\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))|=r^{n-1}\prod\limits_{i=2}^{n-1}\cos^{n-1}\varphi_i$.
+Es gilt $\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))=|\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))|=r^{n-1}\prod\limits_{i=2}^{n-1}\cos^{i-1}\varphi_i$.
 \section{Integralberechnungen}
 \subsection{Die Gammafunktion $\Gamma$}
 Um das Volumen der Kugel auszurechnen, benötigt man die Gammafunktion \\$\Gamma:\R\setminus(-\N_0)\to\R$ (sie ist auf ganz $\C\setminus(-\N_0)$ erklärt, was wir hier aber nicht brauchen). Einige wichtige Eigenschaften werden hier ohne Beweis angegeben:
@@ -253,14 +253,14 @@ Um das Volumen der Kugel auszurechnen, benötigt man die Gammafunktion \\$\Gamma
 \item $\Gamma(x+1)=x\cdot\Gamma(z)$
 \item $\Gamma(1)=1\Rightarrow\Gamma(k)=(k-1)!\quad (k\in\N)$
 \item $\Gamma(\frac{1}{2})=\sqrt{\pi}\Rightarrow\Gamma(n+\frac{1}{2})=\sqrt{\pi}\cdot\frac{1}{2}\cdot\frac{3}{2}\cdot\ldots\cdot (n-\frac{1}{2})=\sqrt{\pi}\cdot 1\cdot 3\cdot\ldots\cdot (2n-1)\quad (n\in\N)$
-\item und $\int\limits_0^1 (1-t)^{w-1}\cdot t^{z-1}dt=\frac{\Gamma(z)\Gamma(w)}{\Gamma(z+w)}$ (siehe z.B. Königsberger, Analysis 2, Kapitel 6.6):
+\item und $\int\limits_0^1 (1-t)^{w-1}\cdot t^{z-1}dt=\frac{\Gamma(z)\Gamma(w)}{\Gamma(z+w)}$ (siehe z.B. Königsberger, Analysis 2, Kapitel 6.6)
 \end{itemize}
 \subsection{Inhalt der $n$-dimensionalen Kugel}
-Sei $\kappa_n$ der Inhalt der $n$-dimensionalen Kugel $D(R)^n$. Sei $A:=[0,R]\times[0,2\pi]\times[-\frac{\pi}{2},+\frac{\pi}{2}]^{n-2}$. Dann ist $P_n(A)=D(R)^n$. Nun ist aber $P_n$ auf $A$ nicht injektiv.\\
+Sei $\kappa_n:=D(R)^n$, mit $R>0$ fest. Sei $A:=[0,R]\times[0,2\pi]\times[-\frac{\pi}{2},+\frac{\pi}{2}]^{n-2}$. Dann ist $P_n(A)=D(R)^n$. Nun ist aber $P_n$ auf $A$ nicht injektiv.\\
 Allerdings ist $\{x\in A|\exists y\in A: x\neq y \wedge P_n(x)=P_n(y)\}$ eine Lebesgue-Nullmenge. Also darf man die Substitutionsregel \eqref{subst} anwenden. Sie liefert
-\[\int\limits_{D(R)^n}dx=\int\limits_A |\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))|da=
+\[\int\limits_{D(R)^n}dx=\int\limits_A |\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))|d(r,\varphi_1,\ldots,\varphi_{n-1})=
 \int\limits_A r^{n-1}\prod\limits_{i=2}^{n-1}\cos^{n-1}\varphi_i d(r,\varphi_1,\ldots,\varphi_{n-1}) \]
-\begin{equation}\label{kappa}\stackrel{\eqref{fubini}}{=}\int\limits_0^R r^{n-1}dr\cdot\int\limits_0^{2\pi}d\varphi_1\cdot \\ \prod\limits_{i=2}^{n-1}\left(\int\limits_{-\frac{\pi}{2}}^\frac{\pi}{2} \cos^{i-1}\varphi_i d\varphi_i\right)
+\begin{equation}\label{kappa}\stackrel{Fubini}{=}\int\limits_0^R r^{n-1}dr\cdot\int\limits_0^{2\pi}d\varphi_1\cdot \\ \prod\limits_{i=2}^{n-1}\left(\int\limits_{-\frac{\pi}{2}}^\frac{\pi}{2} \cos^{i-1}\varphi_i d\varphi_i\right)
 \end{equation}
 Wir berechnen die Faktoren von \eqref{kappa} einzeln:
 Zuerst ist $\int\limits_0^{2\pi}d\varphi_1=2\pi$ und $\int\limits_0^R r^{n-1}dr=\left[\frac{r^n}{n}\right]_0^R=\frac{R^n}{n}$. Außerdem:
@@ -271,32 +271,38 @@ $$\left( \begin{array}{c} \xi= \sqrt{t} \\ d\xi = \frac{1}{2\sqrt{t}}dt\end{arra
 =\int\limits_0^1 (1-t)^\frac{n-2}{2}t^{-\frac{1}{2}}dt = \int\limits_0^1 (1-t)^{\frac{n}{2}-1}t^{\frac{1}{2}-1}dt
 =\frac{\Gamma(\frac{1}{2})\Gamma(\frac{n}{2})}{\Gamma(\frac{n+1}{2})}$$
 Im zweidimensionalen ist damit $\kappa_2=\int\limits_0^R rdr\cdot \int\limits_0^{2\pi}d\varphi_1 d\varphi_1=\frac{R^2}{2}\cdot 2\pi=\pi R^2$.\\
-In $\R^3$ ist $\kappa_3=\int\limits_0^R rdr\cdot \int\limits_0^{2\pi}d\varphi_1 d\varphi_1\cdot \int\limits_{-\frac{\pi}{2}}^\frac{\pi}{2} \cos\varphi_2 d\varphi_2=\frac{R^3}{3}\cdot 2\pi\cdot[\sin\varphi_2]_{-\frac{\pi}{2}}^\frac{\pi}{2}=\frac{4\pi}{3} R^3$.
+In $\R^3$ ist $\kappa_3=\int\limits_0^R rdr\cdot \int\limits_0^{2\pi}d\varphi_1 d\varphi_1\cdot \int\limits_{-\frac{\pi}{2}}^\frac{\pi}{2} \cos\varphi_2 d\varphi_2=\frac{R^3}{3}\cdot 2\pi\cdot[\sin\varphi_2]_{-\frac{\pi}{2}}^\frac{\pi}{2}=\frac{4\pi}{3} R^3$.\\
 Nun zum allgemeinen Teil:\\
-$\kappa_n=2\pi\frac{R^n}{n}\prod\limits_{k=2}^{n-1}\left(\int\limits_{-\frac{\pi}{2}}^\frac{\pi}{2}\cos^{k-1}\varphi_k d\varpi_k\right)=2\pi\frac{R^n}{n}\cdot\sqrt{\pi}^{n-2}\cdot\frac{\Gamma(1)}{\Gamma(\frac{3}{2})}\cdot\frac{\Gamma(\frac{3}{2})}{\Gamma(2)}\cdot\ldots\cdot\frac{\Gamma(\frac{n-1}{2})}{\Gamma(\frac{n}{2})}
+$\kappa_n=2\pi\frac{R^n}{n}\prod\limits_{k=2}^{n-1}\left(\int\limits_{-\frac{\pi}{2}}^\frac{\pi}{2}\cos^{k-1}\varphi_k d\varphi_k\right)=2\pi\frac{R^n}{n}\cdot\sqrt{\pi}^{n-2}\cdot\frac{\Gamma(1)}{\Gamma(\frac{3}{2})}\cdot\frac{\Gamma(\frac{3}{2})}{\Gamma(2)}\cdot\ldots\cdot\frac{\Gamma(\frac{n-1}{2})}{\Gamma(\frac{n}{2})}
 \\=\begin{cases}\frac{2\sqrt{\pi}^n R^n}{(q-1)!\cdot n}; \qquad n=2q, q\in\N \\ \frac{2^{q+1}\sqrt{\pi}^{n-1}R^n}{1\cdot 3\cdot 5\cdot \ldots\cdot(n-2)\cdot n}; \qquad n=2q+1, q\in\N\end{cases}$\\
 $=\begin{cases}\frac{\pi^q R^{2q}}{q!}; \qquad n=2q, q\in\N \\ \frac{2^{q+1}\sqrt{\pi}^q R^{2q+1}}{1\cdot 3\cdot (2q+1)} \qquad n=2q+1, q\in\N\end{cases} $
-\subsection{Sonstiges}%TODO:evtl. auch rausnehmen
+\subsection{Sonstiges}
+Nun können wir auch andere Funktionen integrieren. Beispielsweise sei $f(x)=x_n\sqrt{x_1^2+\ldots x_n^2}$. Dann ist $\int\limits_{D(R)^n}f(x)dx=\int\limits_A r^2\sin\varphi_{n-1}r^{n-1}\prod\limits_{i=2}^{n-1}\cos^{n-1}\varphi_i d(r,\varphi_1,\ldots,\varphi_{n-1})$. Dies lässt sich dann wie vorher ausrechnen.
 \section{Verallgemeinerungen}
 Selsbstverständlich lassen sich auch viele Variationen und Verallgemeinerungen zu den Polarkoordinaten finden. Zwei hilfreiche Verallgemeinerungen werden hier kurz angedeutet.
-\subsection{\glqq Ellipsoidkoordinaten\grqq}%Kommentar: waren bei einer Aufgabe auf einem HM2-Übungsblatt tatsächlich hilfreich...
+\subsection{\glqq Ellipsoidkoordinaten\grqq}
 Seien $a_1,\ldots,a_n>0$ fest. Die Menge $M^n:=\{x\in\R^n|\frac{x_1^2}{a_1^2}+\ldots\frac{x_n^2}{a_n^2}=1\}$ ist ein $n$-dimensionales Ellipsoid mit den Halbachsen $a_1,\ldots,a_n$. Im Spezialfall $a_1=\ldots=a_n:=r$ wird $M^n$ zu einer $n$-dimensionalen Kugel mit Radius $r$.\\
 Mithilfe einer modifizierten Form von $P_n$, nämlich\\ $Q_n(r,\varphi_1,\ldots,\varphi_{n-1})=\begin{pmatrix}a_1r\cos\varphi_1\cdot\ldots\cdot\cos\varphi_{n-1} \\ a_2r\sin\varphi_1\cdot\ldots\cdot\cos\varphi_{n-1} \\
 a_3r\sin\varphi_2\cdot\ldots\cdot\cos\varphi_{n-1} \\
 \vdots \\
 a_nr \sin\varphi_{n-1}
 \end{pmatrix}=\begin{pmatrix}a_1 & & & \\ & a_2 & & \\ & & \ddots & \\ & & & a_n\end{pmatrix}\cdot P_n(r,\varphi_1,\ldots,\varphi_{n-1})$,
-lässt sich der Inhalt von $M^n$ leicht berechnen. Wegen $\det(AB)=\det(A)\det(B)$ gilt:\\
+lässt sich der Inhalt von $M^n$ leicht berechnen. Es ist dann für $A:=[0,1]\times[0,2\pi]\times[-\frac{\pi}{2},+\frac{\pi}{2}]^{n-2}$: $Q_n(A)=M^n$. Wegen $\det(BC)=\det(B)\det(C)$ gilt:\\
 $|\det(J_{Q_n}(r,\varphi_1,\ldots,\varphi_{n-1}))|=
-a_1\cdot a_2\cdot\ldots\cdot a_n\cdot|\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))|$.
+a_1\cdot a_2\cdot\ldots\cdot a_n\cdot|\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))|$.\\
+Damit ist auch $|M^n|=\int\limits_{M^n}dx=\int\limits_A |\det(J_{Q_n}(r,\varphi_1,\ldots,\varphi_{n-1}))|d(r,\varphi_1,\ldots,\varphi_{n-1})=a_1 a_2 \ldots a_n \int\limits_A |\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))|d(r,\varphi_1,\ldots,\varphi_{n-1})=a_1 a_2 \ldots a_n |D(1)^n|$.
 \subsection{verallgemeinerte Zylinderkoordinaten}
 Man kann die Polarkoordinaten und die kartesischen Koordinaten kombinieren. Das bekannteste Beispiel sind die Zylinderkoordinaten im $\R^3$, deren erste zwei Komponenten 2-dimensionale Polarkoordinaten sind und deren dritte Komponente eine kartesische Koordinate ist. Die $(n+k)$-dimensionalen Zylinderkoordinaten verallgemeinern diese. Dabei stehe $n$ wie bisher für die Dimension der Polarkoordinaten und $k$ für die Dimension der Zylinderkoordinaten. Für $k=0$ ergeben sich die $n$-dimensionalen Polarkoordinaten.\\
 Wir definieren $Q_{n,k}:[0,\infty)\times[0, 2\pi]\times[-\frac{\pi}{2},+\frac{\pi}{2}]^{n-2}\times \R^k$ durch
-$$Q_{n,k}(r,\varphi_1,\ldots,\varphi_{n-1}, x_{n+1}, \ldots, x_{n+k})=
+$$Q_{n,k}(r,\varphi_1,\ldots,\varphi_{n-1}, x_1, \ldots, x_k)=
 \begin{pmatrix} \\ P_n(r,\varphi_1,\ldots,\varphi_{n-1}) \\ \\ 0 \\ \vdots \\ 0 \end{pmatrix}
-+ \begin{pmatrix} 0 \\ \vdots \\ 0 \\ x_{n+1} \\ \vdots \\ x_{n+k} \end{pmatrix}.$$
-Für die Jacobimatrix gilt $$J_{Q_{n,k}}(r,\varphi_1,\ldots,\varphi_{n-1}, x_{n+1}, \ldots, x_{n+k})=\begin{pmatrix}
++ \begin{pmatrix} 0 \\ \vdots \\ 0 \\ x_1 \\ \vdots \\ x_k \end{pmatrix}.$$
+Für die Jacobimatrix gilt $$J_{Q_{n,k}}(r,\varphi_1,\ldots,\varphi_{n-1}, x_1, \ldots, x_k)=\begin{pmatrix}
 J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}) & 0 \\ 0 & I_k
 \end{pmatrix}$$
-(wobei $I_k\in\R^{k\times k}$ Einheitsmatrix). Aufgrund der Blockform ist $\det (J_{Q_{n,k}}(r,\varphi_1,\ldots,\varphi_{n-1}, x_{n+1}, \ldots, x_{n+k})) = \det (J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))\cdot \det I_k=\det (J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))$.
+(wobei $I_k\in\R^{k\times k}$ Einheitsmatrix). Aufgrund der Blockform ist \\$\det (J_{Q_{n,k}}(r,\varphi_1,\ldots,\varphi_{n-1}, x_1, \ldots, x_k)) = \det (J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))\cdot \det I_k=\det (J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))$.\\
+Seien $R,l_1,l_2,\ldots,l_k>0$, $A:=D(R)^n\times[0,l_1]\times[0,l_2]\times\ldots\times[0,l_k]$ und $B:=[0,\infty)\times[0, 2\pi]\times[-\frac{\pi}{2},+\frac{\pi}{2}]^{n-2}\times[0,l_1]\times[0,l_2]\times\ldots\times[0,l_k]$. Dann ist $Q_{n,k}(B)=A$ und somit
+$$|A|=\int\limits_A d(r,\varphi_1,\ldots,\varphi_{n-1}, x_1, \ldots, x_k)$$
+$$=\int\limits_B |\det (J_{Q_{n,k}}(r,\varphi_1,\ldots,\varphi_{n-1}, x_1, \ldots, x_k))| d(r,\varphi_1,\ldots,\varphi_{n-1}, x_1, \ldots, x_k)$$
+$$ = \int\limits_B |\det (J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))| d(r,\varphi_1,\ldots,\varphi_{n-1}, x_1, \ldots, x_k) = l_1 l_2 \ldots l_k \cdot |D(R)^n|.$$
 \end{document}
