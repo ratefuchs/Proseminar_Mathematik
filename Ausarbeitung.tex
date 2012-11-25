@@ -150,7 +150,8 @@
 \section{Motivation}
 Wenn mehrdimensionale Integrale in der Vorlesung eingeführt werden, d.h.
 \begin{equation}
-f(x)dx \qquad (x\in\R^n,M\subseteq \R^n, f:\R^n\to\R),\end{equation}
+\label{int}
+\int\limits_M f(x)dx \qquad (x\in\R^n,M\subseteq \R^n, f:\R^n\to\R),\end{equation}
 ist eine der ersten Funktionen, die integriert wird, $f\const 1$. Damit wird der Inhalt (je nach Dimension Fläche, Volumen,$\ldots$) berechnet.\\
 \includegraphics[scale=0.5]{images/nDWürfelKugel.jpg}\\
 Für einfache Mengen wie den $n$-dimensionalen Würfel ist das mithilfe des Satzes von Fubini noch leicht machbar (man bekommt den Inhalt $1$). Für eine weitere regelmäßige Menge, die $n$-dimensionale Kugel $D(R)^n:=\{(x_1,\cdots,x_n)\in\R^n|x_1^2+\cdots+x_n^2\leq R^2\}$, ist das ganze ungleich komplizierter. Fubini liefert
@@ -164,7 +165,6 @@ viel einfacher berechnen.
 \section{Grundlegendes}
 \subsection{Vorgehensweise}
 Die Polarkoordinaten werden als Funktion $P_n$ vom \glqq Polarkoordinatenraum\grqq{} in den kartesischen Raum induktiv definiert. Dabei dienen die bekannten Polarkoordinaten im Fall $n=2$ als Induktionsanfang. Außerdem werde ich immer noch den Fall $n=3$ explizit angeben, bei dem sich die ebenfalls bekannten Kugelkoordinaten ergeben.\\
-\includegraphics[scale=0.5]{images/PolarKugelkoordinaten.jpg}\\
 Darauf werden einige Eigenschaften der Funktion $P_n$ bewiesen, insbesondere wird auch die Funktionaldeterminante berechnet, die für die Substitutionsregel \eqref{subst}
 wichtig ist.\\
 Bemerkung: $n$-dimensionale Polarkoordinaten lassen sich auch auf eine leicht andere Art und Weise definieren, so dass sie auch im Fall $n=1$ definiert sind. Außerdem ergeben sich dabei noch andere Vereinfachungen (Gleichbehandlung aller Winkelvariablen). Nachteil ist, dass sich dann für $n=2$ und $n=3$ nicht die bekannten Polar- bzw. Kugelkoordinaten ergeben.
@@ -173,20 +173,21 @@ Bemerkung: $n$-dimensionale Polarkoordinaten lassen sich auch auf eine leicht an
 \item Es sei im Folgenden stets $n\in\N\setminus\{1\}$, denn für $n=1$ sind die Polarkoordinaten nicht definiert.
 \item $e_n$ bezeichne den $n$-ten kanonischen Einheitsvektor. Soweit nichts anderes gesagt ist, sei $e_n\in\R^n$, also $e_n=(0,\ldots,0,1)^T$.
 \item Als Skalarprodukt werde immer das Standardskalarprodukt im $\R^n$ verwendet, $||\bullet||$ sei im Folgenden die euklidische Norm.
-\item Für Mengen $A\subset \R^n$ bezeichne $|A|$ das Volumen von $A$.
+\item Für Mengen $A\subset \R^n$ bezeichne $|A|$ das Volumen von $A$ gemäß \eqref{int} mit $f\const 1$.
 \end{itemize}
 \section{$P_n$: Definition und Eigenschaften}
 \subsection{Definition}
-$P_2:[0, \infty)\times [0, 2\pi]$ wird direkt definiert durch $P_2(r,\varphi_1)=\begin{pmatrix}
+$P_2:[0, \infty)\times [0, 2\pi]\to \R^2$ wird direkt definiert durch $P_2(r,\varphi_1)=\begin{pmatrix}
 r\cos\varphi_1\\ r\sin\varphi_1\end{pmatrix}$.\\
-Nun wird für $n>2$ die Funktion $P_n:[0,\infty)\times[0, 2\pi]\times[-\frac{\pi}{2},+\frac{\pi}{2}]^{n-2}$ induktiv definiert:\\[0.5em]
+Nun wird für $n>2$ die Funktion $P_n:[0,\infty)\times[0, 2\pi]\times[-\frac{\pi}{2},+\frac{\pi}{2}]^{n-2}\to \R^n$ induktiv definiert:\\[0.5em]
 $P_n(r,\varphi_1, \varphi_2, \ldots, \varphi_{n-1})=\begin{pmatrix}
 P_{n-1}(r,\varphi_1,\cdots,\varphi_{n-2})\cdot\cos\varphi_{n-1} \\ r\cdot\sin \varphi_{n-1}\end{pmatrix}
 $ \\ $= \cos\varphi_{n-1}\begin{pmatrix}P_{n-1}(r,\varphi_1,\cdots,\varphi_{n-2}) \\ 0 \end{pmatrix}+r\sin\varphi_{n-1}e_n$\\
+\includegraphics[scale=0.5]{images/PolarKugelkoordinaten.jpg}\\
 Ausgeschrieben ergibt sich:\\
 $P_n(r,\varphi_1, \varphi_2, \ldots, \varphi_{n-1})= \begin{pmatrix}r\cos\varphi_1\cos\varphi_2\cdot\ldots\cdot\cos\varphi_{n-1} \\ r\sin\varphi_1\cos\varphi_2\cdot\ldots\cdot\cos\varphi_{n-1} \\
-r\sin\varphi_2\cdot\ldots\cdot\cos\varphi_{n-1} \\
-r\sin\varphi_3\cdot\ldots\cdot\cos\varphi_{n-1} \\
+r\sin\varphi_2\cos\varphi_3\cdot\ldots\cdot\cos\varphi_{n-1} \\
+r\sin\varphi_3\cos\varphi_4\cdot\ldots\cdot\cos\varphi_{n-1} \\
 \vdots \\
 r\sin\varphi_{n-2}\cos\varphi_{n-1} \\
 r \sin\varphi_{n-1}
@@ -250,13 +251,13 @@ Es gilt $\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))=|\det(J_{P_n}(r,\varphi
 \subsection{Die Gammafunktion $\Gamma$}
 Um das Volumen der Kugel auszurechnen, benötigt man die Gammafunktion \\$\Gamma:\R\setminus(-\N_0)\to\R$ (sie ist auf ganz $\C\setminus(-\N_0)$ erklärt, was wir hier aber nicht brauchen). Einige wichtige Eigenschaften werden hier ohne Beweis angegeben:
 \begin{itemize}
-\item $\Gamma(x+1)=x\cdot\Gamma(z)$
+\item $\Gamma(x+1)=x\cdot\Gamma(x)$
 \item $\Gamma(1)=1\Rightarrow\Gamma(k)=(k-1)!\quad (k\in\N)$
-\item $\Gamma(\frac{1}{2})=\sqrt{\pi}\Rightarrow\Gamma(n+\frac{1}{2})=\sqrt{\pi}\cdot\frac{1}{2}\cdot\frac{3}{2}\cdot\ldots\cdot (n-\frac{1}{2})=\sqrt{\pi}\cdot 1\cdot 3\cdot\ldots\cdot (2n-1)\quad (n\in\N)$
+\item $\Gamma(\frac{1}{2})=\sqrt{\pi}\Rightarrow\Gamma(n+\frac{1}{2})=\sqrt{\pi}\cdot\frac{1}{2}\cdot\frac{3}{2}\cdot\ldots\cdot (n-\frac{1}{2})=\left(\frac{1}{2}\right)^n\sqrt{\pi}\cdot 1\cdot 3\cdot\ldots\cdot (2n-1)\quad (n\in\N)$
 \item und $\int\limits_0^1 (1-t)^{w-1}\cdot t^{z-1}dt=\frac{\Gamma(z)\Gamma(w)}{\Gamma(z+w)}$ (siehe z.B. Königsberger, Analysis 2, Kapitel 6.6)
 \end{itemize}
 \subsection{Inhalt der $n$-dimensionalen Kugel}
-Sei $\kappa_n:=D(R)^n$, mit $R>0$ fest. Sei $A:=[0,R]\times[0,2\pi]\times[-\frac{\pi}{2},+\frac{\pi}{2}]^{n-2}$. Dann ist $P_n(A)=D(R)^n$. Nun ist aber $P_n$ auf $A$ nicht injektiv.\\
+Sei $\kappa_n:=|D(R)^n|$, mit $R>0$ fest. Sei $A:=[0,R]\times[0,2\pi]\times[-\frac{\pi}{2},+\frac{\pi}{2}]^{n-2}$. Dann ist $P_n(A)=D(R)^n$. Nun ist aber $P_n$ auf $A$ nicht injektiv.\\
 Allerdings ist $\{x\in A|\exists y\in A: x\neq y \wedge P_n(x)=P_n(y)\}$ eine Lebesgue-Nullmenge. Also darf man die Substitutionsregel \eqref{subst} anwenden. Sie liefert
 \[\int\limits_{D(R)^n}dx=\int\limits_A |\det(J_{P_n}(r,\varphi_1,\ldots,\varphi_{n-1}))|d(r,\varphi_1,\ldots,\varphi_{n-1})=
 \int\limits_A r^{n-1}\prod\limits_{i=2}^{n-1}\cos^{n-1}\varphi_i d(r,\varphi_1,\ldots,\varphi_{n-1}) \]
@@ -265,9 +266,9 @@ Allerdings ist $\{x\in A|\exists y\in A: x\neq y \wedge P_n(x)=P_n(y)\}$ eine Le
 Wir berechnen die Faktoren von \eqref{kappa} einzeln:
 Zuerst ist $\int\limits_0^{2\pi}d\varphi_1=2\pi$ und $\int\limits_0^R r^{n-1}dr=\left[\frac{r^n}{n}\right]_0^R=\frac{R^n}{n}$. Außerdem:
 $$\int\limits_{-\frac{\pi}{2}}^\frac{\pi}{2} \cos^{n-1}\varphi_n d\varphi_n=\int\limits_{-\frac{\pi}{2}}^\frac{\pi}{2} \sqrt{1-\sin^2\varphi_n}^{n-1} d\varphi_n$$
-$$\left( \begin{array}{c} \varphi_n= \arcsin \xi \\ d\varphi_n = \frac{1}{\sqrt{1-\xi^2}}d\xi\end{array}\right)
+$$\left. \begin{array}{c} \varphi_n= \arcsin \xi \\ d\varphi_n = \frac{1}{\sqrt{1-\xi^2}}d\xi\end{array}\right|
 =\int\limits_{-1}^1 \sqrt{1-\xi^2}^{n-2}d\xi=2\int\limits_0^1\sqrt{1-\xi^2}^{n-2}d\xi$$
-$$\left( \begin{array}{c} \xi= \sqrt{t} \\ d\xi = \frac{1}{2\sqrt{t}}dt\end{array}\right)
+$$\left. \begin{array}{c} \xi= \sqrt{t} \\ d\xi = \frac{1}{2\sqrt{t}}dt\end{array}\right|
 =\int\limits_0^1 (1-t)^\frac{n-2}{2}t^{-\frac{1}{2}}dt = \int\limits_0^1 (1-t)^{\frac{n}{2}-1}t^{\frac{1}{2}-1}dt
 =\frac{\Gamma(\frac{1}{2})\Gamma(\frac{n}{2})}{\Gamma(\frac{n+1}{2})}$$
 Im zweidimensionalen ist damit $\kappa_2=\int\limits_0^R rdr\cdot \int\limits_0^{2\pi}d\varphi_1 d\varphi_1=\frac{R^2}{2}\cdot 2\pi=\pi R^2$.\\
@@ -275,7 +276,7 @@ In $\R^3$ ist $\kappa_3=\int\limits_0^R rdr\cdot \int\limits_0^{2\pi}d\varphi_1 
 Nun zum allgemeinen Teil:\\
 $\kappa_n=2\pi\frac{R^n}{n}\prod\limits_{k=2}^{n-1}\left(\int\limits_{-\frac{\pi}{2}}^\frac{\pi}{2}\cos^{k-1}\varphi_k d\varphi_k\right)=2\pi\frac{R^n}{n}\cdot\sqrt{\pi}^{n-2}\cdot\frac{\Gamma(1)}{\Gamma(\frac{3}{2})}\cdot\frac{\Gamma(\frac{3}{2})}{\Gamma(2)}\cdot\ldots\cdot\frac{\Gamma(\frac{n-1}{2})}{\Gamma(\frac{n}{2})}
 \\=\begin{cases}\frac{2\sqrt{\pi}^n R^n}{(q-1)!\cdot n}; \qquad n=2q, q\in\N \\ \frac{2^{q+1}\sqrt{\pi}^{n-1}R^n}{1\cdot 3\cdot 5\cdot \ldots\cdot(n-2)\cdot n}; \qquad n=2q+1, q\in\N\end{cases}$\\
-$=\begin{cases}\frac{\pi^q R^{2q}}{q!}; \qquad n=2q, q\in\N \\ \frac{2^{q+1}\sqrt{\pi}^q R^{2q+1}}{1\cdot 3\cdot (2q+1)} \qquad n=2q+1, q\in\N\end{cases} $
+$=\begin{cases}\frac{\pi^q R^{2q}}{q!}; \qquad n=2q, q\in\N \\ \frac{2^{q+1}\sqrt{\pi}^q R^{2q+1}}{1\cdot 3\cdot \ldots\cdot (2q+1)} \qquad n=2q+1, q\in\N\end{cases} $
 \subsection{Sonstiges}
 Nun können wir auch andere Funktionen integrieren. Beispielsweise sei $f(x)=x_n\sqrt{x_1^2+\ldots x_n^2}$. Dann ist $\int\limits_{D(R)^n}f(x)dx=\int\limits_A r^2\sin\varphi_{n-1}r^{n-1}\prod\limits_{i=2}^{n-1}\cos^{n-1}\varphi_i d(r,\varphi_1,\ldots,\varphi_{n-1})$. Dies lässt sich dann wie vorher ausrechnen.
 \section{Verallgemeinerungen}
